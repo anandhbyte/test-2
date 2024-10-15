@@ -1,33 +1,14 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+#login-container, #register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
 }
 
-h1 {
-    margin-bottom: 20px;
-}
-
-form {
-    width: 300px;
-    margin: 0 auto;
-}
-
-label {
+#login-container {
     display: block;
-    margin-bottom: 5px;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    cursor: pointer;
+#register-container {
+    display: none;
 }
