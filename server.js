@@ -1,39 +1,12 @@
-const express = require('express');
-const mysql = require('mysql');
+// ... (existing database connection and login handling) ...
 
-const app = express();
-const port = 3000;
-
-// Replace with your database connection details
-const db = mysql.createConnection({
-    host: 'your_host',
-    user: 'your_user',
-    password: 'your_password',
-    database: 'your_database'
-});
-
-db.connect((err) => {
-    if (err) throw err;
-    console.log('Connected to MySQL database!');
-});
-
-app.use(express.json());
-
-app.post('/login', (req, res) => {
+app.post('/register', (req, res) => {
     const { username, password } = req.body;
 
-    const sql = 'SELECT * FROM users WHERE username = ? AND password = ?';
+    const sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
     db.query(sql, [username, password], (err, results) => {
         if (err) throw err;
 
-        if (results.length > 0) {
-            res.json({ success: true });
-        } else {
-            res.json({ success: false, message: 'Invalid username or password' });
-        }
+        res.json({ success: true, message: 'Registration successful' });
     });
-});
-
-app.listen(port, () => {
-    console.log(`Server listening on port ${port}`);
 });
