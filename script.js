@@ -1,29 +1,39 @@
-const form = document.getElementById('loginForm');
+const loginContainer = document.getElementById('login-container');
+const registerContainer = document.getElementById('register-container');
+const loginLink = document.getElementById('loginLink');
+const registerLink = document.getElementById('registerLink');
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
 
-form.addEventListener('submit', (event) => {
+loginForm.addEventListener('submit', handleLogin);
+registerForm.addEventListener('submit', handleRegister);
+loginLink.addEventListener('click', showLogin);
+registerLink.addEventListener('click', showRegister);
+
+function handleLogin(event) {
     event.preventDefault();
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    fetch('/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username, password })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Handle successful login (e.g., redirect to a dashboard)
-            window.location.href = '/dashboard';
-        } else {
-            // Handle login failure (e.g., display an error message)
-            alert(data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-});
+    // ... (existing login logic) ...
+}
+
+function handleRegister(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('registerUsername').value;
+    const password = document.getElementById('registerPassword').value;
+
+    // ... (register logic, including database insertion) ...
+}
+
+function showLogin() {
+    loginContainer.style.display = 'block';
+    registerContainer.style.display = 'none';
+}
+
+function showRegister() {
+    loginContainer.style.display = 'none';
+    registerContainer.style.display = 'block';
+}
